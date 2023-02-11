@@ -8,7 +8,7 @@ func _ready():
 	highscore_label.text = "Current record\n" + str(int(highscore))
 
 func _on_start_pressed():
-	get_tree().change_scene("res://scenes/world.tscn")
+	get_tree().change_scene("res://scenes/main_level.tscn")
 
 func _on_exit_pressed():
 	get_tree().quit()

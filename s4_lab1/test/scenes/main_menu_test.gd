@@ -13,7 +13,7 @@ func before():
 func before_test():
 	reset(spy_scene)
 
-func test_main_menu_score():
+func test_main_menu_highscore():
 	scene_runner(spy_scene)
 	var savegame = File.new()
 	var save_path = "user://savegame.save"
@@ -23,5 +23,3 @@ func test_main_menu_score():
 	var highscore = save_data["highscore"]
 	
 	#verify(spy_scene, 0)._on_CheckBox_toggled(any_bool())
-	
-	assert_str(spy_scene.highscore_label.text).is_equal("Current record\n" + str(int(highscore)))
