@@ -51,6 +51,7 @@ func get_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
 func die():
+	game_over = true
 	AudioStreamManager.play("res://assets/pada.mp3")
 	velocity = Vector2.ZERO
 	set_collision_mask_bit(1, false)
