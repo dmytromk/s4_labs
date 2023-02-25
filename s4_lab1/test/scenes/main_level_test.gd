@@ -42,5 +42,5 @@ func test_player_death():
 	#yield(scene_runner.await_signal_on(spy_scene.platform_eraser, "_on_platform_eraser_body_entered"), "completed")
 	#yield(scene_runner.simulate_frames(60), "completed")
 	yield(scene_runner.simulate_frames(10), "completed")
-	enemy.free()
 	assert_bool(spy_scene.player.game_over).is_equal(true)
+	enemy.free()
