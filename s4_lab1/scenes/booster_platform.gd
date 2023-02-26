@@ -1,3 +1,6 @@
-extends RigidBody2D
+extends Platform
 
-export var jump_multiplication_effect = 1.5
+class_name BoosterPlatform
+
+func _init():
+	jump_multiplication_effect = 1.5

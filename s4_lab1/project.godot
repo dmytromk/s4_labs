@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/matchers/AnyClazzArgumentMatcher.gd"
 }, {
+"base": "Platform",
+"class": "BoosterPlatform",
+"language": "GDScript",
+"path": "res://scenes/booster_platform.gd"
+}, {
 "base": "ValueProvider",
 "class": "CallBackValueProvider",
 "language": "GDScript",
@@ -614,6 +619,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://test/scenes/main_menu_test.gd"
 }, {
+"base": "Platform",
+"class": "MovingPlatform",
+"language": "GDScript",
+"path": "res://scenes/moving_platform.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Platform",
+"language": "GDScript",
+"path": "res://scenes/platform.gd"
+}, {
 "base": "Reference",
 "class": "RPC",
 "language": "GDScript",
@@ -713,6 +728,7 @@ _global_script_class_icons={
 "AnyArgumentMatcher": "",
 "AnyBuildInTypeArgumentMatcher": "",
 "AnyClazzArgumentMatcher": "",
+"BoosterPlatform": "",
 "CallBackValueProvider": "",
 "ChainedArgumentMatcher": "",
 "CmdArgumentParser": "",
@@ -831,6 +847,8 @@ _global_script_class_icons={
 "LocalTime": "",
 "MainLevelTest": "",
 "MainMenuTest": "",
+"MovingPlatform": "",
+"Platform": "",
 "RPC": "",
 "RPCClientConnect": "",
 "RPCClientDisconnect": "",

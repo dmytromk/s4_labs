@@ -1,6 +1,6 @@
-extends RigidBody2D
+extends Platform
 
-export var jump_multiplication_effect = 1
+class_name MovingPlatform
 
 var direction = Vector2.RIGHT
 var speed = 60 * Global.insane_mode
