@@ -22,27 +22,30 @@ func world_generation(plaforms_amount):
 		intital_platform_position_y -= rand_range(45, 100)
 		
 		var new_platform
-		var platform_type = randi()%10 # 0 - booster, else - standatd
+		var platform_type = randi()%100 # 0 - booster, else - standard
 		
-		if platform_type == 0:
+		#booster_platform
+		if platform_type < 10:
 			new_platform = platform_scene[1].instance() as RigidBody2D
 			last_platform_is_enemy = false
 			
-		elif platform_type >= 1 and platform_type <= 2 and last_platform_is_enemy == false and score > 200:
-			new_platform = platform_scene[3].instance() as StaticBody2D
-			last_platform_is_enemy = true
-			
-		elif platform_type >= 3 and platform_type <= 5 and score > -200:
+		#moving_platform
+		elif platform_type < 30:
 			new_platform = platform_scene[2].instance() as RigidBody2D
 			last_platform_is_enemy = false
-			
+		
+		#enemy
+		elif platform_type < 45 and last_platform_is_enemy == false and score > 500:
+			new_platform = platform_scene[3].instance() as StaticBody2D
+			last_platform_is_enemy = true		
+		
+		#platform
 		else:
 			new_platform = platform_scene[0].instance() as RigidBody2D
 			last_platform_is_enemy = false
 			
-		if new_platform != null:
-			new_platform.position = Vector2(rand_range(30, 150), intital_platform_position_y)
-			platform_generator.call_deferred("add_child", new_platform)
+		new_platform.position = Vector2(rand_range(30, 150), intital_platform_position_y)
+		platform_generator.call_deferred("add_child", new_platform)
 	
 func _ready():
 	randomize()
