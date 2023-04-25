@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="merge_sort.h" />
+    <ClInclude Include="merge_sort_multithread.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
