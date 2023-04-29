@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <chrono>
+
 
 std::vector<int> randomize(int size, int modulo = 10000)
 {
@@ -11,18 +13,13 @@ std::vector<int> randomize(int size, int modulo = 10000)
 	return result;
 }
 
-template <typename function, typename ... Args>
-double time_evaluation(function func, Args ...args)
-{
-	std::clock_t start = std::clock();
-	func(args...);
-	return static_cast<double>(std::clock() - start);
-}
 
-//template <typename F, typename ... Ts>
-//double time_evaluation(F&& f, Ts&&...args)
-//{
-//	std::clock_t start = std::clock();
-//	std::forward<F>(f)(std::forward<Ts>(args)...);
-//	return static_cast<double>(std::clock() - start);
-//}
+template <typename function, typename ... Args>
+long long time_evaluation(function&& func, Args&&...args)
+{
+	auto start = std::chrono::high_resolution_clock::now();
+	std::forward<function>(func)(std::forward<Args>(args)...);
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double, std::milli> ms_result = end - start;;
+	return ms_result.count();
+}
