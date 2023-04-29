@@ -3,6 +3,7 @@
 
 #include <thread>
 
+
 template <typename main_iter, typename auxil_iter>
 void mergesort_do_multithread(const main_iter left, const main_iter right, const auxil_iter aux_left, int cur_thread_amount, int max_threads)
 {
@@ -37,6 +38,7 @@ void mergesort_do_multithread(const main_iter left, const main_iter right, const
 
 	merge(left, middle, right, aux_left);
 }
+
 
 template <typename main_iter>
 void mergesort_multithread(const main_iter left, const main_iter right, int max_threads = 8) //max amount of threads MUST BE EVEN

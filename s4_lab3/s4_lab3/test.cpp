@@ -4,7 +4,7 @@
 #include "utils.h"
 
 #include "doctest.h"
-#include <time.h>
+
 
 TEST_CASE("Validity test: Merge sort is equal to std::sort") {
 	srand(time(0));
@@ -21,18 +21,18 @@ TEST_CASE("Validity test: Merge sort is equal to std::sort") {
 			std::sort(test3.begin(), test3.end());
 			CHECK(test == test2);
 			CHECK(test == test3);
-			std::cout << "\nSuccess";
 		}
 	}
 }
 
-TEST_CASE("\nNEW Speedtesting: merge sort, multithreaded merge sort, std::sort") {
+
+TEST_CASE("\nSpeedtesting: merge sort, multithreaded merge sort, std::sort") {
 	srand(time(0));
 	int start_size = 50;
 	int	end_size = 50000000;
 	int number_of_threads = 8;
 
-	std::cout << "\n\nNEW Speedtesting merge sort, multithreaded merge sort, std::sort.\n\n";
+	std::cout << "\n\nSpeedtesting merge sort, multithreaded merge sort, std::sort.\n\n";
 
 	for (int i = start_size; i <= end_size; i *= 10)
 	{
@@ -43,8 +43,10 @@ TEST_CASE("\nNEW Speedtesting: merge sort, multithreaded merge sort, std::sort")
 				test.begin(), test.end());
 			auto mrg_sort_multithread_dur = time_evaluation(mergesort_multithread<std::vector<int>::iterator>, 
 				test2.begin(), test2.end(), number_of_threads);
-			auto std_sort_dur = time_evaluation(mergesort<std::vector<int>::iterator>, 
+			auto std_sort_dur = time_evaluation(std::sort<std::vector<int>::iterator>, 
 				test3.begin(), test3.end());
+
+			double speedup_coef = double(mrg_sort_dur) / mrg_sort_multithread_dur;
 
 			CHECK(test == test3);
 			CHECK(test2 == test3);
@@ -53,11 +55,38 @@ TEST_CASE("\nNEW Speedtesting: merge sort, multithreaded merge sort, std::sort")
 
 			std::cout << std::setw(5) << i << std::setw(width) << "Merge sort" 
 				<< std::setw(width) << "Merge multithread sort"
-				<< std::setw(width) << "std::sort\n"; 
+				<< std::setw(width) << "std::sort"
+				<< std::setw(width) << "Speedup Coefficient\n";
 
 			std::cout << std::setw(width) << mrg_sort_dur << "ms" 
 				<< std::setw(width) << mrg_sort_multithread_dur << "ms"
-				<< std::setw(width) << std_sort_dur << "ms" << "\n\n";
+				<< std::setw(width) << std_sort_dur << "ms"
+				<< std::setw(width) << speedup_coef << " times" << "\n\n";
+	}
+}
+
+
+TEST_CASE("\Speedtesting different amount of threads") {
+	srand(time(0));
+	int start_size = 50;
+	int	end_size = 50000000;
+	int max_number_of_threads = 16;
+
+	std::cout << "\n\nNEW Speedtesting merge sort, multithreaded merge sort, std::sort.\n\n";
+
+	for (int i = start_size; i <= end_size; i *= 10)
+	{
+		std::vector<int> test = randomize(i, 2 * i);
+		std::cout << "SIZE " << i << ":\n";
+
+			for (int x = 1; x <= max_number_of_threads; x *= 2)
+			{
+				auto temp_test = test;
+				std::cout << x << " threads - " << time_evaluation(mergesort_multithread<std::vector<int>::iterator>,
+					temp_test.begin(), temp_test.end(), x) << "ms\n";
+			}
+
+		std::cout << "\n\n";
 	}
 }
 

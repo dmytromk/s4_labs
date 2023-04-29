@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include <thread>
 #include <algorithm>
 
 template <typename main_iter, typename auxil_iter>
