@@ -16,9 +16,9 @@ namespace MultiMerge {
 		const auto middle = std::next(left, size / 2);
 		const auto aux_middle = std::next(aux_left, std::distance(left, middle));
 
-		if (cur_thread_amount < max_threads - 1)
+		if (cur_thread_amount < max_threads)
 		{
-			cur_thread_amount += 2;
+			cur_thread_amount *= 2;
 
 			std::thread th1(&mergesort_do<main_iter, auxil_iter>,
 				left, middle, aux_left, cur_thread_amount, max_threads);
@@ -41,9 +41,9 @@ namespace MultiMerge {
 
 
 	template <typename main_iter>
-	void mergesort(const main_iter left, const main_iter right, int max_threads = 8) //max amount of threads MUST BE POW OF 2
+	void mergesort(const main_iter left, const main_iter right, int max_threads = 8) //max_threads must be a pow of 2
 	{
 		std::vector<typename main_iter::value_type> buffer(std::distance(left, right));
-		mergesort_do(left, right, buffer.begin(), 0, max_threads);
+		mergesort_do(left, right, buffer.begin(), 1, max_threads);
 	}
 }
