@@ -16,8 +16,8 @@ TEST_CASE("Validity test: Merge sort is equal to std::sort") {
 			std::vector<int> test = randomize(i, 2 * i);
 			auto test2 = test, test3 = test;
 
-			mergesort(test.begin(), test.end());
-			mergesort_multithread(test2.begin(), test2.end());
+			Merge::mergesort(test.begin(), test.end());
+			MultiMerge::mergesort(test2.begin(), test2.end());
 			std::sort(test3.begin(), test3.end());
 			CHECK(test == test2);
 			CHECK(test == test3);
@@ -39,9 +39,9 @@ TEST_CASE("\nSpeedtesting: merge sort, multithreaded merge sort, std::sort") {
 			std::vector<int> test = randomize(i, 2 * i);
 			auto test2 = test, test3 = test;
 			
-			auto mrg_sort_dur = time_evaluation(mergesort<std::vector<int>::iterator>, 
+			auto mrg_sort_dur = time_evaluation(Merge::mergesort<std::vector<int>::iterator>,
 				test.begin(), test.end());
-			auto mrg_sort_multithread_dur = time_evaluation(mergesort_multithread<std::vector<int>::iterator>, 
+			auto mrg_sort_multithread_dur = time_evaluation(MultiMerge::mergesort<std::vector<int>::iterator>,
 				test2.begin(), test2.end(), number_of_threads);
 			auto std_sort_dur = time_evaluation(std::sort<std::vector<int>::iterator>, 
 				test3.begin(), test3.end());
@@ -82,7 +82,7 @@ TEST_CASE("\Speedtesting different amount of threads") {
 			for (int x = 1; x <= max_number_of_threads; x *= 2)
 			{
 				auto temp_test = test;
-				std::cout << x << " threads - " << time_evaluation(mergesort_multithread<std::vector<int>::iterator>,
+				std::cout << x << " threads - " << time_evaluation(MultiMerge::mergesort<std::vector<int>::iterator>,
 					temp_test.begin(), temp_test.end(), x) << "ms\n";
 			}
 
