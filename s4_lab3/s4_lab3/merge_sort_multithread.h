@@ -16,7 +16,7 @@ namespace MultiMerge {
 		const auto middle = std::next(left, size / 2);
 		const auto aux_middle = std::next(aux_left, std::distance(left, middle));
 
-		if (cur_thread_amount < max_threads)
+		if (cur_thread_amount < max_threads - 1)
 		{
 			cur_thread_amount += 2;
 
