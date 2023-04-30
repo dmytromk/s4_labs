@@ -32,7 +32,7 @@ TEST_CASE("\nSpeedtesting: merge sort, multithreaded merge sort, std::sort") {
 	int	end_size = 50000000;
 	int number_of_threads = 8;
 
-	std::cout << "\n\nSpeedtesting merge sort, multithreaded merge sort, std::sort.\n\n";
+	std::cout << "\n\nSpeedtesting merge sort, multithreaded merge sort, std::sort.\n";
 
 	for (int i = start_size; i <= end_size; i *= 10)
 	{
@@ -68,11 +68,11 @@ TEST_CASE("\nSpeedtesting: merge sort, multithreaded merge sort, std::sort") {
 
 TEST_CASE("\Speedtesting different amount of threads") {
 	srand(time(0));
-	int start_size = 50;
+	int start_size = 500;
 	int	end_size = 50000000;
 	int max_number_of_threads = 16;
 
-	std::cout << "\n\nNEW Speedtesting merge sort, multithreaded merge sort, std::sort.\n\n";
+	std::cout << "\n\nSpeedtesting multithreaded merge sort for different amount of threads.\n";
 
 	for (int i = start_size; i <= end_size; i *= 10)
 	{
